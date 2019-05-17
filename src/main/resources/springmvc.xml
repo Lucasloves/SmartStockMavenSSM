@@ -24,41 +24,9 @@
      -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 前缀 -->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/jsp/"/>
         <!-- 后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>
-
-    <bean class="com.hxh.controller.HelloController" name="/helloController">
-    </bean>
-
-<!--    <bean class="com.hxh.controller.ByeController" name="/bye">-->
-<!--    </bean>-->
-
-<!--    <mvc:annotation-driven>-->
-<!--        <mvc:message-converters>-->
-<!--            <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
-<!--                <property name="supportedMediaTypes">-->
-<!--                    <list>-->
-<!--                        <value>text/plain;charset=utf-8</value>-->
-<!--                        <value>text/html;charset=UTF-8</value>-->
-<!--                        <value>text/json;charset=UTF-8</value>-->
-<!--                        <value>application/json;charset=utf-8</value>-->
-<!--                    </list>-->
-<!--                </property>-->
-<!--                <property name="objectMapper">-->
-<!--                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
-<!--                        <property name="dateFormat">-->
-<!--                            <bean class="java.text.SimpleDateFormat">-->
-<!--                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>-->
-<!--                            </bean>-->
-<!--                        </property>-->
-<!--                    </bean>-->
-<!--                </property>-->
-<!--            </bean>-->
-<!--        </mvc:message-converters>-->
-<!--    </mvc:annotation-driven>-->
-
-<!--    <mvc:annotation-driven/>-->
 
 </beans>

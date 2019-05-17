@@ -26,7 +26,7 @@
         <!-- jstl jar包 -->
         <jstl.version>1.2</jstl.version>
         <!-- mysql-connector包 -->
-        <mysql.version>5.1.30</mysql.version>
+        <mysql.version>8.0.15</mysql.version>
         <!-- commons-dbcp -->
         <dbcp.version>1.4</dbcp.version>
         <!-- mybatis-spring整合包 -->
@@ -34,15 +34,15 @@
         <!-- spring版本号 -->
         <spring.version>5.1.5.RELEASE</spring.version>
         <!-- mybatis版本号 -->
-        <mybatis.version>3.4.0</mybatis.version>
+        <mybatis.version>3.4.6</mybatis.version>
         <!-- jackson版本号 -->
-        <jackson.verson>2.9.0</jackson.verson>
+        <jackson.verson>2.9.8</jackson.verson>
         <!-- junit -->
         <junit-version>4.12</junit-version>
         <!-- cglib -->
         <cglib-version>3.2.2</cglib-version>
         <!-- log4j日志文件管理包版本 -->
-        <slf4j.version>1.7.21</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
     </properties>
 
@@ -53,12 +53,7 @@
             <artifactId>javaee-api</artifactId>
             <version>${javaee.version}</version>
         </dependency>
-        <!-- jstl包 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>1.7.2</version>
-         </dependency>
+
         <!-- JSTL标签类 -->
         <dependency>
             <groupId>jstl</groupId>
@@ -71,6 +66,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
+
         <!-- dbcp数据库连接池包 -->
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -153,16 +149,6 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.verson}</version>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
 
         <!-- fastjson -->
         <dependency>
@@ -195,17 +181,23 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
         <!-- aspectjweaver包 -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.8.10</version>
+            <version>1.9.2</version>
         </dependency>
         <!-- aspectjrt 包-->
         <dependency>
-            <groupId>aspectj</groupId>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.5.3</version>
+            <version>1.9.2</version>
         </dependency>
     </dependencies>
 

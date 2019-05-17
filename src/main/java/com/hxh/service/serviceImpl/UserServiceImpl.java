@@ -5,7 +5,6 @@ import com.hxh.pojo.User;
 import com.hxh.service.UserService;
 import com.hxh.util.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
