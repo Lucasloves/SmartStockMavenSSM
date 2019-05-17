@@ -38,13 +38,10 @@ public class UserController {
         return userService.allUser();
     }
 
-    @RequestMapping("m1")
+    @RequestMapping("/m1")
     @ResponseBody
     public User m1(){
         System.out.println(1111);
-
-
-
         User user = new User();
         user.setName("小明");
         user.setPhone("123");

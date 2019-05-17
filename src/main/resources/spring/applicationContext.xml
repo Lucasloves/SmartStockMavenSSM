@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -17,7 +16,7 @@
     <import resource="classpath*:spring/spring-*.xml"/>
 
     <!-- 激活注解 -->
-    <context:component-scan base-package="com.hxh.controller,com.hxh.service.serviceImpl,com.hxh.advice"/>
+    <context:component-scan base-package="com.hxh"/>
 
     <!-- 1. aop是基于代理完成的 所以要激活自动代理 -->
     <aop:aspectj-autoproxy/>
@@ -39,7 +38,7 @@
 <!--            <aop:before method="methodBefore" pointcut="execution(* com.hxh.service.*.*(..))"></aop:before>-->
 <!--        </aop:aspect>-->
 <!--    </aop:config>-->
-    <mvc:annotation-driven>
+<!--    <mvc:annotation-driven>-->
 <!--        <mvc:message-converters>-->
 <!--            <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
 <!--                <property name="supportedMediaTypes">-->
@@ -61,7 +60,7 @@
 <!--                </property>-->
 <!--            </bean>-->
 <!--        </mvc:message-converters>-->
-    </mvc:annotation-driven>
+<!--    </mvc:annotation-driven>-->
 
 
 </beans>
