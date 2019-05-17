@@ -42,6 +42,9 @@ public class UserController {
     @ResponseBody
     public User m1(){
         System.out.println(1111);
+
+
+
         User user = new User();
         user.setName("小明");
         user.setPhone("123");
