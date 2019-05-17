@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+    <!-- 利用import可以分开进行配置 对于所有spring-开头的配置文件都导入 -->
+    <import resource="classpath*:spring/spring-*.xml"/>
+
+    <!-- 激活注解 -->
+    <context:component-scan base-package="com.hxh.controller,com.hxh.service.serviceImpl,com.hxh.advice"/>
+
+    <!-- 1. aop是基于代理完成的 所以要激活自动代理 -->
+    <aop:aspectj-autoproxy/>
+<!--    &lt;!&ndash; 2. 注册切面 &ndash;&gt;-->
+<!--    <bean class="com.hxh.advice.BeforeAdvice" id="beforeAdvice">-->
+<!--    </bean>-->
+<!--    &lt;!&ndash; 3. 配置切入点等等信息 非注解方式 &ndash;&gt;-->
+<!--    <aop:config>-->
+<!--        <aop:aspect id="beforeAdvice" ref="beforeAdvice">-->
+<!--            &lt;!&ndash; aop:befor：表示是前置通知-->
+<!--                method：表示使用哪种方法来切-->
+<!--                pointcut：切入点 你要切什么包->什么类->什么方法-->
+<!--                execution(* com.hxh.service.*.*(..))：里面的(..)代表任意参数 不适合参数不同的方法重载-->
+<!--                com.hxh.service.*.*()：切无参方法-->
+<!--                com.hxh.service.*.*(java.lang.String)：切有一个string类型参数方法-->
+<!--                com.hxh.service.*.*(java.lang.String, int)：切两个参数(string, int)的方法-->
+<!--                com..*.*.*()：其中com..两个点代表com下的任意包，无论多少层-->
+<!--             &ndash;&gt;-->
+<!--            <aop:before method="methodBefore" pointcut="execution(* com.hxh.service.*.*(..))"></aop:before>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+    <mvc:annotation-driven>
+<!--        <mvc:message-converters>-->
+<!--            <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+<!--                <property name="supportedMediaTypes">-->
+<!--                    <list>-->
+<!--                        <value>text/plain;charset=utf-8</value>-->
+<!--                        <value>text/html;charset=UTF-8</value>-->
+<!--                        <value>text/json;charset=UTF-8</value>-->
+<!--                        <value>application/json;charset=utf-8</value>-->
+<!--                    </list>-->
+<!--                </property>-->
+<!--                <property name="objectMapper">-->
+<!--                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
+<!--                        <property name="dateFormat">-->
+<!--                            <bean class="java.text.SimpleDateFormat">-->
+<!--                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>-->
+<!--                            </bean>-->
+<!--                        </property>-->
+<!--                    </bean>-->
+<!--                </property>-->
+<!--            </bean>-->
+<!--        </mvc:message-converters>-->
+    </mvc:annotation-driven>
+
+
+</beans>

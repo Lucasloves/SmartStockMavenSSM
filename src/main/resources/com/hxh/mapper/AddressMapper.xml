@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxh.mapper.AddressMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache/>
+
+    <!-- sql标签 可以一次规定好几个列 在下边的selsect里面进行include导入 方便大量查询指定列的时候用 -->
+    <sql id="baseColumn">
+        country,state,city
+    </sql>
+
+    <select id="queryById" resultType="com.hxh.pojo.Address">
+        select * from address where id = #{id}
+    </select>
+
+    <select id="queryByCountryCity" resultType="com.hxh.pojo.Address">
+        select * from address
+        <!-- where标签是mybatis的自动消除多余and 只可以消除每一句前面的and -->
+        <!-- 还可以处理 判断是否为空null if里面多个判断用and连接 -->
+        <where>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="country != null">
+                and country = #{country}
+            </if>
+        </where>
+    </select>
+
+    <!-- parameterType是入参类型 -->
+    <update id="update" parameterType="com.hxh.pojo.Address">
+        update address
+        <!-- set标签 可以去除最后的逗号 -->
+        <set>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="state != null and state != ''">
+                state = #{state},
+            </if>
+            <if test="street != null and street != ''">
+                street = #{street},
+            </if>
+            <if test="zip != null and zip != ''">
+                zip = #{zip}
+            </if>
+        </set>
+        <where>
+            addressId = #{addressId}
+        </where>
+    </update>
+
+    <select id="query" resultType="com.hxh.pojo.Address">
+        select * from address
+        <where>
+            <choose>
+                <when test="country != null ">
+                    and country = #{country}
+                </when>
+                <when test="state != null">
+                    and state = #{state}
+                </when>
+                <otherwise>
+                    and city = #{city}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="queryTrim" resultType="com.hxh.pojo.Address">
+        select * from address
+        <!-- trim标签 prefix句子前少什么 prefixOverrides句子首多什么 -->
+        <!-- trim标签 suffix句子后少什么 suffixOverrides句子末尾多什么 -->
+        <trim prefix="WHERE" suffixOverrides="and">
+            <!-- 测试 每一句末尾加了and 这个trim会识别到 -->
+            <if test="country != null and country != ''">
+                country = #{country} and
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city} and
+            </if>
+            <if test="state != null and state != ''">
+                state = #{state} and
+            </if>
+            <if test="street != null and street != ''">
+                street = #{street} and
+            </if>
+            <if test="zip != null and zip != ''">
+                zip = #{zip} and
+            </if>
+        </trim>
+    </select>
+
+    <!--
+    foreach
+    collection：描述集合类型 list map set等等
+    open：后面的sql语句的拼接开头
+    close：最后结尾sql拼接的字符串
+    item：数据项 正常foreach循环
+    separator：指其中每一项之间的分隔符
+    index：索引
+     -->
+    <select id="queryByIds" resultType="com.hxh.pojo.Address">
+        select * from address
+        <where>
+            addressId in
+            <foreach collection="list" open="(" close=")" item="item" separator="," index="index">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryLike" resultType="com.hxh.pojo.Address">
+        <bind name="_city" value="'%'+city+'%'"/>
+        select * from address
+        where
+        <!-- 模糊查询
+        方法一 用sql函数concat构造%的sql查询
+        city like concat('%',#{city},'%')
+        -->
+        <!-- 方法二 用bind标签 name是新的命名 value就是新的sql语句 -->
+        city like #{_city}
+    </select>
+
+    <select id="queryAll" resultType="com.hxh.pojo.Address">
+        select
+        <include refid="baseColumn"/>
+        from address
+    </select>
+
+</mapper>
